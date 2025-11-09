@@ -356,3 +356,49 @@ document.addEventListener('DOMContentLoaded', () => {
         examTimer.start();
     }
 });
+// Contact form handling
+initializeContactForm() {
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(contactForm);
+            const contactData = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                subject: formData.get('subject'),
+                message: formData.get('message'),
+                newsletter: formData.get('newsletter') === 'on'
+            };
+
+            try {
+                // Here you would typically send the data to your backend
+                // For now, we'll simulate a successful submission
+                this.handleContactSubmission(contactData);
+            } catch (error) {
+                this.showError('Failed to send message. Please try again.');
+            }
+        });
+    }
+}
+
+// Handle contact form submission
+handleContactSubmission(contactData) {
+    // Simulate form submission
+    console.log('Contact form submitted:', contactData);
+    
+    // Show success message
+    alert('Thank you for your message! We will get back to you within 24 hours.');
+    
+    // Reset form
+    document.getElementById('contactForm').reset();
+}
+
+// Don't forget to call this in the init method
+init() {
+    this.initializeHamburgerMenu();
+    this.initializeAuthForms();
+    this.initializeContactForm(); // Add this line
+    this.checkAuthentication();
+    this.initializeRoleBasedUI();
+}
