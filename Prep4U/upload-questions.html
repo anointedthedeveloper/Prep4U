@@ -30,65 +30,273 @@
     <div class="container">
         <div class="upload-header">
             <h1>Upload Exam Questions</h1>
-            <p>Add new questions to the question bank</p>
+            <p>Add questions individually or bulk upload using our format</p>
         </div>
 
-        <div class="upload-card">
-            <form id="uploadForm" class="upload-form">
-                <div class="form-group">
-                    <label for="examTitle">Exam Title</label>
-                    <input type="text" id="examTitle" name="examTitle" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="questionType">Question Type</label>
-                    <select id="questionType" name="questionType" required>
-                        <option value="multiple-choice">Multiple Choice</option>
-                        <option value="short-answer">Short Answer</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="questionText">Question</label>
-                    <textarea id="questionText" name="questionText" rows="3" required></textarea>
-                </div>
-
-                <div id="multipleChoiceFields">
-                    <div class="form-group">
-                        <label>Options</label>
-                        <input type="text" name="option1" placeholder="Option 1" required>
-                        <input type="text" name="option2" placeholder="Option 2" required>
-                        <input type="text" name="option3" placeholder="Option 3">
-                        <input type="text" name="option4" placeholder="Option 4">
-                    </div>
-                    <div class="form-group">
-                        <label for="correctAnswer">Correct Answer</label>
-                        <select id="correctAnswer" name="correctAnswer" required>
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                            <option value="3">Option 3</option>
-                            <option value="4">Option 4</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="points">Points</label>
-                    <input type="number" id="points" name="points" min="1" value="1" required>
-                </div>
-
-                <div class="form-actions">
-                    <button type="submit" class="btn btn-primary">Upload Question</button>
-                    <button type="button" class="btn btn-secondary" id="addAnother">Add Another</button>
-                </div>
-            </form>
+        <div class="upload-tabs">
+            <button class="tab-btn active" data-tab="single">Single Question</button>
+            <button class="tab-btn" data-tab="bulk">Bulk Upload</button>
+            <button class="tab-btn" data-tab="paste">Paste Questions</button>
         </div>
 
+        <!-- Single Question Tab -->
+        <div class="tab-content active" id="singleTab">
+            <div class="upload-card">
+                <form id="singleQuestionForm" class="upload-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="examTitle">Exam Title *</label>
+                            <input type="text" id="examTitle" name="examTitle" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="questionType">Question Type *</label>
+                            <select id="questionType" name="questionType" required>
+                                <option value="multiple-choice">Multiple Choice</option>
+                                <option value="true-false">True/False</option>
+                                <option value="short-answer">Short Answer</option>
+                                <option value="essay">Essay</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="questionText">Question Text *</label>
+                        <textarea id="questionText" name="questionText" rows="3" placeholder="Enter your question here..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="questionExplanation">Explanation (Optional)</label>
+                        <textarea id="questionExplanation" name="explanation" rows="2" placeholder="Add explanation for the answer..."></textarea>
+                    </div>
+
+                    <div id="multipleChoiceFields" class="options-section">
+                        <div class="options-header">
+                            <h4>Options</h4>
+                            <button type="button" class="btn btn-sm btn-outline" id="addOption">+ Add Option</button>
+                        </div>
+                        <div class="options-grid" id="optionsContainer">
+                            <div class="option-item">
+                                <input type="text" name="options[]" placeholder="Option 1" required>
+                                <label class="radio-label">
+                                    <input type="radio" name="correctAnswer" value="0" required>
+                                    <span class="radio-custom"></span>
+                                    Correct
+                                </label>
+                                <button type="button" class="btn-remove-option" disabled>×</button>
+                            </div>
+                            <div class="option-item">
+                                <input type="text" name="options[]" placeholder="Option 2" required>
+                                <label class="radio-label">
+                                    <input type="radio" name="correctAnswer" value="1" required>
+                                    <span class="radio-custom"></span>
+                                    Correct
+                                </label>
+                                <button type="button" class="btn-remove-option">×</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="trueFalseFields" class="hidden">
+                        <div class="form-group">
+                            <label>Correct Answer</label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="tfCorrectAnswer" value="true">
+                                    <span class="radio-custom"></span>
+                                    True
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="tfCorrectAnswer" value="false">
+                                    <span class="radio-custom"></span>
+                                    False
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="points">Points *</label>
+                            <input type="number" id="points" name="points" min="1" max="100" value="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="difficulty">Difficulty</label>
+                            <select id="difficulty" name="difficulty">
+                                <option value="easy">Easy</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="hard">Hard</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Category</label>
+                            <input type="text" id="category" name="category" placeholder="e.g., Mathematics, Science">
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <span class="btn-text">Upload Question</span>
+                            <div class="btn-loading hidden"></div>
+                        </button>
+                        <button type="button" class="btn btn-secondary" id="saveDraft">Save as Draft</button>
+                        <button type="button" class="btn btn-outline" id="previewQuestion">Preview</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Bulk Upload Tab -->
+        <div class="tab-content" id="bulkTab">
+            <div class="upload-card">
+                <div class="bulk-upload-info">
+                    <h3>Bulk Upload Questions</h3>
+                    <p>Upload multiple questions at once using a CSV or text file with our format</p>
+                    
+                    <div class="format-guide">
+                        <h4>Expected Format:</h4>
+                        <div class="format-examples">
+                            <div class="format-example">
+                                <h5>Multiple Choice:</h5>
+                                <pre><code>Question Text?|option1|option2|option3|option4|correct_option_index|points|difficulty|category
+What is 2+2?|3|4|5|6|1|1|easy|Mathematics
+Capital of France?|London|Berlin|Paris|Madrid|2|1|easy|Geography</code></pre>
+                            </div>
+                            <div class="format-example">
+                                <h5>True/False:</h5>
+                                <pre><code>Question Text?|true|false|correct_answer|points|difficulty|category
+The sky is blue.|true|false|true|1|easy|Science
+Water boils at 100°C.|true|false|true|1|easy|Science</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="upload-zone" id="bulkUploadZone">
+                        <div class="upload-placeholder">
+                            <div class="upload-icon">📁</div>
+                            <h4>Drop your file here or click to browse</h4>
+                            <p>Supports .csv, .txt files (Max: 10MB)</p>
+                            <input type="file" id="bulkFileInput" accept=".csv,.txt" hidden>
+                            <button type="button" class="btn btn-outline" onclick="document.getElementById('bulkFileInput').click()">
+                                Choose File
+                            </button>
+                        </div>
+                        <div class="upload-progress hidden">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="bulkProgress"></div>
+                            </div>
+                            <span id="progressText">0%</span>
+                        </div>
+                    </div>
+
+                    <div class="upload-stats hidden" id="uploadStats">
+                        <h4>Upload Summary</h4>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <span class="stat-number" id="totalQuestions">0</span>
+                                <span class="stat-label">Total Questions</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number" id="successfulUploads">0</span>
+                                <span class="stat-label">Successful</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number" id="failedUploads">0</span>
+                                <span class="stat-label">Failed</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-primary" id="processBulkUpload" disabled>
+                            Process Upload
+                        </button>
+                        <button type="button" class="btn btn-outline" id="downloadTemplate">
+                            Download Template
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Paste Questions Tab -->
+        <div class="tab-content" id="pasteTab">
+            <div class="upload-card">
+                <div class="paste-questions">
+                    <h3>Paste Questions</h3>
+                    <p>Paste questions in bulk using the format below. You can paste hundreds of questions at once!</p>
+                    
+                    <div class="paste-format">
+                        <h4>Paste Format:</h4>
+                        <pre><code>// Multiple Choice (use | as separator)
+Question Text?|option1|option2|option3|option4|correct_index|points|difficulty|category
+
+// True/False
+Question Text?|true|false|correct_answer|points|difficulty|category
+
+// Short Answer
+Question Text?|correct_answer|points|difficulty|category</code></pre>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pastedQuestions">Paste your questions here:</label>
+                        <textarea id="pastedQuestions" name="pastedQuestions" rows="15" 
+                                  placeholder="Paste your questions here following the format above...
+Example:
+What is 2+2?|3|4|5|6|1|1|easy|Mathematics
+The Earth is round.|true|false|true|1|easy|Science
+Define gravity.|Force that attracts objects|2|medium|Physics"></textarea>
+                        <div class="char-counter">
+                            <span id="questionCount">0</span> questions detected
+                        </div>
+                    </div>
+
+                    <div class="preview-section hidden" id="pastePreview">
+                        <h4>Preview (First 5 Questions)</h4>
+                        <div class="preview-questions" id="previewQuestions"></div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-primary" id="processPaste">
+                            Process Questions
+                        </button>
+                        <button type="button" class="btn btn-outline" id="clearPaste">
+                            Clear All
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Upload History -->
         <div class="upload-history">
-            <h2>Recently Uploaded Questions</h2>
+            <h2>Recent Uploads</h2>
+            <div class="history-controls">
+                <div class="search-box">
+                    <input type="text" id="searchUploads" placeholder="Search questions...">
+                    <span class="search-icon">🔍</span>
+                </div>
+                <select id="filterCategory">
+                    <option value="">All Categories</option>
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="Science">Science</option>
+                    <option value="Geography">Geography</option>
+                </select>
+            </div>
             <div id="uploadHistory">
-                <!-- Upload history will be loaded dynamically -->
                 <div class="loading">Loading upload history...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Preview Modal -->
+    <div class="modal hidden" id="previewModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Question Preview</h3>
+                <button class="modal-close" id="closePreview">&times;</button>
+            </div>
+            <div class="modal-body" id="previewModalBody">
+                <!-- Preview content will be inserted here -->
             </div>
         </div>
     </div>
@@ -97,4 +305,4 @@
     <script src="js/firebase.js"></script>
     <script src="firebase/firebase-config.js"></script>
 </body>
-</html>git add .
+</html>

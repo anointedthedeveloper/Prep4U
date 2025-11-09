@@ -28,42 +28,270 @@
     </nav>
 
     <div class="container">
-        <div class="dashboard-header">
-            <h1>Student Dashboard</h1>
-            <p>Welcome back, <span id="userName">Student</span>!</p>
-        </div>
-
-        <div class="stats-grid">
-            <div class="stat-card">
-                <h3>Active Exams</h3>
-                <p class="stat-number" id="activeExams">0</p>
+        <!-- Welcome Section -->
+        <div class="dashboard-welcome">
+            <div class="welcome-content">
+                <h1>Welcome back, <span id="userName">Student</span>! 👋</h1>
+                <p>Ready to continue your learning journey? You're making great progress!</p>
+                <div class="welcome-stats">
+                    <div class="welcome-stat">
+                        <span class="stat-value" id="streakCount">3</span>
+                        <span class="stat-label">Day Streak</span>
+                    </div>
+                    <div class="welcome-stat">
+                        <span class="stat-value" id="studyTime">2.5h</span>
+                        <span class="stat-label">Today</span>
+                    </div>
+                </div>
             </div>
-            <div class="stat-card">
-                <h3>Completed</h3>
-                <p class="stat-number" id="completedExams">0</p>
-            </div>
-            <div class="stat-card">
-                <h3>Average Score</h3>
-                <p class="stat-number" id="averageScore">-</p>
-            </div>
-        </div>
-
-        <div class="dashboard-section">
-            <h2>Available Exams</h2>
-            <div class="exam-list" id="examList">
-                <!-- Exams will be loaded dynamically from Firebase -->
-                <div class="loading">Loading exams...</div>
+            <div class="welcome-actions">
+                <button class="btn btn-primary" onclick="window.location.href='take-exam.html'">
+                    🚀 Start Practice Test
+                </button>
+                <button class="btn btn-outline" onclick="window.location.href='contact.html'">
+                    💬 Get Help
+                </button>
             </div>
         </div>
 
-        <div class="dashboard-section">
-            <h2>Recent Results</h2>
-            <div class="results-list" id="recentResults">
-                <!-- Recent results will be loaded dynamically -->
-                <div class="loading">Loading results...</div>
+        <!-- Quick Stats -->
+        <div class="stats-grid enhanced-stats">
+            <div class="stat-card enhanced">
+                <div class="stat-icon">📚</div>
+                <div class="stat-content">
+                    <h3>Active Exams</h3>
+                    <p class="stat-number" id="activeExams">3</p>
+                    <span class="stat-trend">+1 this week</span>
+                </div>
+            </div>
+            <div class="stat-card enhanced">
+                <div class="stat-icon">✅</div>
+                <div class="stat-content">
+                    <h3>Completed</h3>
+                    <p class="stat-number" id="completedExams">12</p>
+                    <span class="stat-trend">85% success rate</span>
+                </div>
+            </div>
+            <div class="stat-card enhanced">
+                <div class="stat-icon">📊</div>
+                <div class="stat-content">
+                    <h3>Average Score</h3>
+                    <p class="stat-number" id="averageScore">87%</p>
+                    <span class="stat-trend">+5% this month</span>
+                </div>
+            </div>
+            <div class="stat-card enhanced">
+                <div class="stat-icon">⏱️</div>
+                <div class="stat-content">
+                    <h3>Study Time</h3>
+                    <p class="stat-number" id="totalStudyTime">28h</p>
+                    <span class="stat-trend">Consistent learner</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Dashboard Grid -->
+        <div class="dashboard-grid">
+            <!-- Available Exams Section -->
+            <div class="dashboard-card main-card">
+                <div class="card-header">
+                    <h2>📋 Available Exams</h2>
+                    <a href="take-exam.html" class="view-all">View All →</a>
+                </div>
+                <div class="exam-list enhanced" id="examList">
+                    <div class="exam-item featured">
+                        <div class="exam-badge">Recommended</div>
+                        <div class="exam-content">
+                            <h4>Mathematics Final Exam</h4>
+                            <p>Comprehensive test covering algebra, geometry, and calculus</p>
+                            <div class="exam-meta">
+                                <span>⏱️ 60 min</span>
+                                <span>❓ 25 questions</span>
+                                <span>🎯 Advanced</span>
+                            </div>
+                        </div>
+                        <a href="take-exam.html?exam=1" class="btn btn-primary">Start Now</a>
+                    </div>
+                    <div class="exam-item">
+                        <div class="exam-content">
+                            <h4>Science Quiz</h4>
+                            <p>Physics, Chemistry, and Biology fundamentals</p>
+                            <div class="exam-meta">
+                                <span>⏱️ 30 min</span>
+                                <span>❓ 15 questions</span>
+                                <span>🎯 Intermediate</span>
+                            </div>
+                        </div>
+                        <a href="take-exam.html?exam=2" class="btn btn-outline">Start</a>
+                    </div>
+                    <div class="exam-item">
+                        <div class="exam-content">
+                            <h4>English Language Test</h4>
+                            <p>Grammar, comprehension, and vocabulary assessment</p>
+                            <div class="exam-meta">
+                                <span>⏱️ 45 min</span>
+                                <span>❓ 20 questions</span>
+                                <span>🎯 Beginner</span>
+                            </div>
+                        </div>
+                        <a href="take-exam.html?exam=3" class="btn btn-outline">Start</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Overview -->
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h2>📈 Progress Overview</h2>
+                </div>
+                <div class="progress-chart">
+                    <div class="chart-placeholder">
+                        <div class="chart-bars">
+                            <div class="chart-bar" style="height: 80%">
+                                <span class="bar-label">Math</span>
+                                <span class="bar-value">80%</span>
+                            </div>
+                            <div class="chart-bar" style="height: 65%">
+                                <span class="bar-label">Science</span>
+                                <span class="bar-value">65%</span>
+                            </div>
+                            <div class="chart-bar" style="height: 90%">
+                                <span class="bar-label">English</span>
+                                <span class="bar-value">90%</span>
+                            </div>
+                            <div class="chart-bar" style="height: 75%">
+                                <span class="bar-label">History</span>
+                                <span class="bar-value">75%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress-summary">
+                        <p>Your overall performance is <strong>excellent</strong>! Focus on Science to improve your average.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Results -->
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h2>🏆 Recent Results</h2>
+                    <a href="results.html" class="view-all">View All →</a>
+                </div>
+                <div class="results-list enhanced" id="recentResults">
+                    <div class="result-item high-score">
+                        <div class="result-icon">🎯</div>
+                        <div class="result-content">
+                            <h4>Mathematics Midterm</h4>
+                            <p>Completed: Today • Score: <strong>92%</strong></p>
+                        </div>
+                        <span class="score-badge excellent">A</span>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-icon">📝</div>
+                        <div class="result-content">
+                            <h4>Science Quiz</h4>
+                            <p>Completed: Yesterday • Score: <strong>85%</strong></p>
+                        </div>
+                        <span class="score-badge good">B+</span>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-icon">📚</div>
+                        <div class="result-content">
+                            <h4>English Test</h4>
+                            <p>Completed: 2 days ago • Score: <strong>78%</strong></p>
+                        </div>
+                        <span class="score-badge average">C+</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Study Goals -->
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h2>🎯 Study Goals</h2>
+                </div>
+                <div class="goals-list">
+                    <div class="goal-item completed">
+                        <div class="goal-checkbox">✅</div>
+                        <div class="goal-content">
+                            <h4>Complete 5 practice tests</h4>
+                            <p>Completed today</p>
+                        </div>
+                    </div>
+                    <div class="goal-item in-progress">
+                        <div class="goal-checkbox">⏳</div>
+                        <div class="goal-content">
+                            <h4>Improve Science score to 80%</h4>
+                            <p>Current: 65% • 15% to go</p>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 65%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="goal-item">
+                        <div class="goal-checkbox">📅</div>
+                        <div class="goal-content">
+                            <h4>Study 10 hours this week</h4>
+                            <p>Current: 6 hours • 4 hours remaining</p>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 60%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h2>⚡ Quick Actions</h2>
+                </div>
+                <div class="actions-grid">
+                    <a href="take-exam.html" class="action-btn">
+                        <span class="action-icon">📝</span>
+                        <span class="action-text">Take Practice Test</span>
+                    </a>
+                    <a href="results.html" class="action-btn">
+                        <span class="action-icon">📊</span>
+                        <span class="action-text">View Progress</span>
+                    </a>
+                    <a href="contact.html" class="action-btn">
+                        <span class="action-icon">💬</span>
+                        <span class="action-text">Get Help</span>
+                    </a>
+                    <a href="#" class="action-btn">
+                        <span class="action-icon">📚</span>
+                        <span class="action-text">Study Materials</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Tutor Message -->
+            <div class="dashboard-card tutor-card">
+                <div class="card-header">
+                    <h2>👨‍🏫 Message from Anointed</h2>
+                </div>
+                <div class="tutor-message">
+                    <div class="tutor-avatar">
+                        <div class="avatar-placeholder">AA</div>
+                    </div>
+                    <div class="message-content">
+                        <p>"Great work on your recent math test! I noticed you're doing well with algebra. Let's focus on improving your science scores next. Remember to review the study materials I shared with you."</p>
+                        <div class="message-actions">
+                            <a href="contact.html" class="btn btn-sm btn-primary">Reply</a>
+                            <a href="#" class="btn btn-sm btn-outline">Schedule Session</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Prep4U by Anointed Agunloye. All rights reserved.</p>
+        </div>
+    </footer>
 
     <script src="js/app.js"></script>
     <script src="js/firebase.js"></script>
