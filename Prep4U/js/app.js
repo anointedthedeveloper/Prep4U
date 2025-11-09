@@ -1352,30 +1352,3 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Firebase Integration JavaScript (Simplified for demo)
-class FirebaseIntegration {
-    constructor() {
-        this.initialized = false;
-        this.init();
-    }
-
-    async init() {
-        try {
-            if (typeof firebaseConfig !== 'undefined') {
-                // Firebase would be initialized here
-                console.log('Firebase would be initialized with config:', firebaseConfig);
-                this.initialized = true;
-            } else {
-                console.warn('Firebase configuration not found. Running in demo mode.');
-            }
-        } catch (error) {
-            console.error('Firebase initialization error:', error);
-        }
-    }
-}
-
-// Initialize Firebase integration
-document.addEventListener('DOMContentLoaded', () => {
-    window.firebaseIntegration = new FirebaseIntegration();
-});
-
