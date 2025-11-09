@@ -1,17 +1,11 @@
 // Firebase Configuration
-// This file is intentionally empty to allow the app to run in demo mode
-// To enable Firebase integration, uncomment and configure the following:
-
-/*
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_AUTH_DOMAIN",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_STORAGE_BUCKET",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
+    apiKey: "AIzaSyAI4IanYawsnOhB0AirY6AIbY1rY8Ed-xc",
+    authDomain: "prep4u-579eb.firebaseapp.com",
+    projectId: "prep4u-579eb",
+    storageBucket: "prep4u-579eb.firebasestorage.app",
+    messagingSenderId: "68038568339",
+    appId: "1:68038568339:web:f1d2051d0e90c3c9c8a066"
 };
-*/
 
-// The app will run in demo mode without Firebase configuration
-console.log('Firebase config loaded (demo mode)');
+console.log('Firebase configuration loaded');
