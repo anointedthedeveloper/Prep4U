@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Results - Prep4U</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="assets/logo.png" alt="Prep4U Logo" class="logo">
+                <span>Prep4U</span>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <a href="dashboard.html" class="nav-link">Dashboard</a>
+                <a href="take-exam.html" class="nav-link">Exams</a>
+                <a href="results.html" class="nav-link active">Results</a>
+                <a href="#" class="nav-link" id="logoutBtn">Logout</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="results-header">
+            <h1>Exam Results</h1>
+            <p>View your performance and analytics</p>
+        </div>
+
+        <div class="results-summary">
+            <div class="score-card">
+                <h2>Overall Score</h2>
+                <div class="score-circle">
+                    <span id="overallScore">0%</span>
+                </div>
+                <div class="score-details">
+                    <p>Correct: <span id="correctAnswers">0</span></p>
+                    <p>Total: <span id="totalAnswers">0</span></p>
+                    <p>Time Taken: <span id="timeTaken">-</span></p>
+                </div>
+            </div>
+
+            <div class="performance-metrics">
+                <h3>Performance Metrics</h3>
+                <div class="metric">
+                    <label>Accuracy</label>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="accuracyBar"></div>
+                    </div>
+                    <span id="accuracyValue">0%</span>
+                </div>
+                <div class="metric">
+                    <label>Speed</label>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="speedBar"></div>
+                    </div>
+                    <span id="speedValue">0%</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="detailed-results">
+            <h2>Question Review</h2>
+            <div id="questionReview">
+                <!-- Question review will be loaded dynamically -->
+                <div class="loading">Loading detailed results...</div>
+            </div>
+        </div>
+
+        <div class="results-actions">
+            <button class="btn btn-primary" onclick="window.print()">Print Results</button>
+            <a href="dashboard.html" class="btn btn-secondary">Back to Dashboard</a>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/firebase.js"></script>
+    <script src="firebase/firebase-config.js"></script>
+</body>
+</html>

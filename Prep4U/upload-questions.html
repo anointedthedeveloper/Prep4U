@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Questions - Prep4U</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="assets/logo.png" alt="Prep4U Logo" class="logo">
+                <span>Prep4U</span>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <a href="admin-dashboard.html" class="nav-link">Dashboard</a>
+                <a href="upload-questions.html" class="nav-link active">Upload Questions</a>
+                <a href="#" class="nav-link">Manage Exams</a>
+                <a href="#" class="nav-link" id="logoutBtn">Logout</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="upload-header">
+            <h1>Upload Exam Questions</h1>
+            <p>Add new questions to the question bank</p>
+        </div>
+
+        <div class="upload-card">
+            <form id="uploadForm" class="upload-form">
+                <div class="form-group">
+                    <label for="examTitle">Exam Title</label>
+                    <input type="text" id="examTitle" name="examTitle" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="questionType">Question Type</label>
+                    <select id="questionType" name="questionType" required>
+                        <option value="multiple-choice">Multiple Choice</option>
+                        <option value="short-answer">Short Answer</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="questionText">Question</label>
+                    <textarea id="questionText" name="questionText" rows="3" required></textarea>
+                </div>
+
+                <div id="multipleChoiceFields">
+                    <div class="form-group">
+                        <label>Options</label>
+                        <input type="text" name="option1" placeholder="Option 1" required>
+                        <input type="text" name="option2" placeholder="Option 2" required>
+                        <input type="text" name="option3" placeholder="Option 3">
+                        <input type="text" name="option4" placeholder="Option 4">
+                    </div>
+                    <div class="form-group">
+                        <label for="correctAnswer">Correct Answer</label>
+                        <select id="correctAnswer" name="correctAnswer" required>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                            <option value="4">Option 4</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="points">Points</label>
+                    <input type="number" id="points" name="points" min="1" value="1" required>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Upload Question</button>
+                    <button type="button" class="btn btn-secondary" id="addAnother">Add Another</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="upload-history">
+            <h2>Recently Uploaded Questions</h2>
+            <div id="uploadHistory">
+                <!-- Upload history will be loaded dynamically -->
+                <div class="loading">Loading upload history...</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/firebase.js"></script>
+    <script src="firebase/firebase-config.js"></script>
+</body>
+</html>
